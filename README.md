@@ -1,5 +1,6 @@
 # detect_debugger
 ブラウザのデバッグコンソールを検知する  
+https://oshiimizunohuta.github.io/detect_debugger/
 
 デバッグコンソールを開いた後、5回メッセージがコールされるとwindowを閉じます。(ポップアップウィンドウのみ)  
 この挙動が意図した正しいものかはわかりません。今後、使用できなくなる可能性はあると思います。
