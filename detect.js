@@ -32,22 +32,14 @@ onmessage = function(e){
 				postMessage(0);
 				debugger;
 			}else{
-				if(dcnt > CLOSE_COUNT){
-					console.error('APPLICATION STOPPED');
-					postMessage('close');
-					window.close();
-					return;
-				}else if(dcnt > 0){
-					console.error('MUST CLOSE DEBUGGER!!');
+				if(dcnt > 0){
+					console.warn('DEBUG CONSOLE DETECTED');
 				}
 				dcnt++;
 			}
 		}, 1000);
-	}else if(e.data == 'close'){
-			window.close();
-			return;
 	}else{
 		dcnt = 0;
+		console.clear();
 	}
-	
 };

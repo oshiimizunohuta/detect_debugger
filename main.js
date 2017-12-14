@@ -1,7 +1,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2017 hampe.
+ * Copyright 2017 bitchunk.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 
 window.addEventListener('DOMContentLoaded', function(){
 	var wk = new Worker('./detect.js')
-		,dcnt = 0, CLOSE_COUNT = 5
+		,dcnt = 0
 	;
 	wk.onmessage = function(e){
 		if(e.data == 'init'){
@@ -34,22 +34,16 @@ window.addEventListener('DOMContentLoaded', function(){
 					wk.postMessage(0);
 					debugger;
 				}else{
-					if(dcnt > CLOSE_COUNT){
-						console.error('APPLICATION STOPPED');
-						wk.postMessage('close');
-						window.close();
-						return;
-					}else if(dcnt > 0){
-						console.error('MUST CLOSE DEBUGGER!!');
+					if(dcnt > 0){
+						console.warn('DEBUG CONSOLE DETECTED');
 					}
 					dcnt++;
+					
 				}
 			}, 1000);
-		}else if(e.data == 'close'){
-			window.close();
-			return;
 		}else{
 			dcnt = 0;
+			console.clear();
 		}
 	};
 	wk.postMessage('init');
